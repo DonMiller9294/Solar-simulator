@@ -1,0 +1,70 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Define the constants
+G = 6.67430e-11  # Universal gravitational constant (m^3/kg/s^2)
+AU = 1.496e11    # Astronomical Unit (m), average distance from Earth to the Sun
+Ms = 1.989e30    # Mass of the Sun (kg)
+
+# Define the initial conditions for planets (semi-major axis, eccentricity, and period in years)
+planets = {
+    'Mercury': (0.39 * AU, 0.2056, 0.24),
+    'Venus': (0.72 * AU, 0.0067, 0.62),
+    'Earth': (AU, 0.0167, 1.0),
+    'Mars': (1.52 * AU, 0.0934, 1.88)
+}
+
+# Create a figure
+fig = plt.figure(figsize=(8, 8))
+ax = plt.axes(xlim=(-1.5 * AU, 1.5 * AU), ylim=(-1.5 * AU, 1.5 * AU))
+
+# Create planet objects
+planet_lines = {planet: ax.plot([], [], 'o-', label=planet)[0] for planet in planets}
+
+# Initialize the plot
+def init():
+    for planet, line in planet_lines.items():
+        line.set_data([], [])
+    return planet_lines.values()
+
+# Define the time span and time step
+years = 5
+dt = 0.01  # Years
+
+# Define the initial positions and velocities
+initial_positions = {planet: (semi_major_axis * (1 - eccentricity), 0) for planet, (semi_major_axis, eccentricity, _) in planets.items()}
+initial_velocities = {planet: (0, np.sqrt(G * Ms / semi_major_axis)) for planet, (semi_major_axis, _, _) in planets.items()}
+
+# Perform the simulation
+def simulate(i):
+    t = i * dt
+    for planet in planets:
+        semi_major_axis, eccentricity, period = planets[planet]
+        x0, y0 = initial_positions[planet]
+        vx0, vy0 = initial_velocities[planet]
+        
+        # Calculate the angle of the planet's position
+        theta = 2 * np.pi * t / period
+        
+        # Calculate the position using polar coordinates
+        r = semi_major_axis * (1 - eccentricity ** 2) / (1 + eccentricity * np.cos(theta))
+        x = r * np.cos(theta)
+        y = r * np.sin(theta)
+        
+        # Update the position of the planet
+        planet_lines[planet].set_data(x0 + x, y0 + y)
+    
+    return planet_lines.values()
+
+# Create an animation
+anim = FuncAnimation(fig, simulate, init_func=init, frames=int(years / dt), interval=20, blit=True)
+
+# Add labels and legend
+plt.xlabel('X Position (m)')
+plt.ylabel('Y Position (m)')
+plt.title('Solar System Simulator')
+plt.legend(loc='upper right')
+
+# Display the animation
+plt.show()
