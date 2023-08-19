@@ -1,0 +1,84 @@
+
+
+```markdown
+# Solar System Simulator
+
+![Solar System Simulator](screenshot.png)
+
+A basic solar system simulator that visualizes the motion of planets around the Sun using Python and Matplotlib.
+
+## Table of Contents
+- [Solar System Simulator](#solar-system-simulator)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Simulation Details](#simulation-details)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Acknowledgments](#acknowledgments)
+
+## Description
+
+This project is a basic solar system simulator that uses Python and Matplotlib to visualize the motion of planets around the Sun. It provides a simple, educational, and interactive way to explore planetary orbits in our solar system.
+
+## Features
+
+- Visualize the motion of planets (Mercury, Venus, Earth, and Mars) around the Sun.
+- Interactive animation that shows the orbits over a specified number of years.
+- Customizable simulation parameters such as the time span and time step.
+- Educational tool for learning about planetary motion and orbits.
+
+## Installation
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/yourusername/solar-system-simulator.git
+   ```
+
+2. Install the required Python packages:
+
+   ```bash
+   pip install matplotlib numpy
+   ```
+
+## Usage
+
+1. Run the simulation script:
+
+   ```bash
+   python solar_system_simulator.py
+   ```
+
+2. Adjust the simulation parameters as needed, such as the time span and time step.
+
+3. Observe the animation of the solar system.
+
+## Simulation Details
+
+- The simulation uses a basic Euler method for numerical integration and doesn't consider gravitational interactions between planets.
+- Planetary positions and velocities are calculated based on the semi-major axis, eccentricity, and period of each planet's orbit.
+
+## Contributing
+
+Contributions are welcome! If you have any ideas, bug fixes, or improvements, please open an issue or create a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+created by Don Miller
+
+- Thanks to Matplotlib for providing visualization capabilities.
+- Inspired by the beauty and complexity of our solar system.
+
+---
+
+**Note:** This simulator is a simplified educational tool and may not accurately represent the precise motions of planets in the solar system. It is intended for learning and exploration purposes.
+
+```
+
+In this README template:
